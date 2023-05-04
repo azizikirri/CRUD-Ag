@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-8 mx-auto">
+        <div class="form-group mt-5">
+          <label for="">Write anything</label>
+          <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder=""
+                 [(ngModel)]="myTask.title"
+                 [ngClass]="{'is-invalid': !myTask.title}">
+          <div *ngIf="!myTask.title" class="invalid-feedback">Filling this input is necessary</div>
+
+          <a  name="" id="" class="btn btn-block btn-warning" href="#" role="button" (click)="addTask()">Add</a>
+        </div>
+    <div class="card bg-light text-dar" *ngFor="let task of tasks ; let i = index">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <ng-container *ngIf="editingIndex !== i; else editMode">
+          <h4 class="card-title mb-0">{{task.title}}</h4>
+          <div>
+            <a name="" id="" class="btn btn-sm btn-secondary mr-1" href="#" role="button" (click)="editingIndex = i">
+              <i class="fa fa-pencil" aria-hidden="true">Edit</i>
+            </a>
+            <a name="" id="" class="btn btn-sm btn-danger mr-2" href="#" role="button" (click)="deleteTask(i)">
+              <i class="fa-sharp fa-regular fa-trash">Delete</i>
+            </a>
+          </div>
+        </ng-container>
+        <ng-template #editMode>
+          <div>
+            <input type="text" class="form-control" [(ngModel)]="task.title">
+            <button class="btn btn-success btn-sm" (click)="updateTask(task)">Save</button>
+            <button class="btn btn-secondary btn-sm" (click)="editingIndex = -1">Cancel</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</body>
+</html>
+
